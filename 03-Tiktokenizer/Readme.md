@@ -10,6 +10,6 @@
 
 | Example - Token Count when I write my full name "Arindam Mitra":-|
 | --------- |
-| <img src="/Images/8-AI-Decision-Tree.jpg"> |
+| <img src="/Images/24-Tiktokenizer-Calculate-Token-My-Name-gpt4.jpg"> |
 
 
