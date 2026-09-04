@@ -6,7 +6,7 @@
 
 | Below is how it looks:- |
 | --------- |
-| <img src="/Images/8-AI-Decision-Tree.jpg"> |
+| <img src="/Images/23-Tiktokenizer-Default.png"> |
 
 | Example - Token Count when I write my full name "Arindam Mitra":-|
 | --------- |
