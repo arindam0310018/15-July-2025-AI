@@ -4,7 +4,7 @@
 | --------- |
 | __Data CANNOT BE LOADED in all panels of the Grafana Dashboard.__ |
 | <img src="/Images/35-Error-Copilot-License-Usage-Dashboard.png"> |
-| <img src="/Images/36-Error-Copilot-License-Usage-Dashboard.png"> |
+|  |
 
 
 | Resolution:- |
