@@ -3,15 +3,29 @@
 | BOM (Bill of Material):- |
 | --------- |
 | __Below Azure Services were used to create "Copilot License Statistics Dashboard":-__ |
-| 1. App Service Plan |
-| 2. Function App |
-| 3. Application Insights |
-| 4. Azure Managed Grafana |
+| 1. App Registration |
+| 2. App Service Plan |
+| 3. Function App |
+| 4. Application Insights |
+| 5. Azure Managed Grafana |
 
 
 | CODEBASE:- |
 | --------- |
 | 1. Powershell |
+
+
+| APP REGISTRAION:- |
+| --------- |
+| 1. Create "Secrets" |
+| 2. Add Application API Permissions - "Application" |
+| --------- |
+| <img src="/Images/28-App-Reg-Api-Permission-Application.jpg"> |
+
+
+| FUNCTION APP ENVIRONMENTAL VARIABLES DETAILS:- |
+| --------- |
+| <img src="/Images/29-Function-App-Env-Variables.jpg"> |
 
 
 | FUNCTION TEMPLATE DETAILS:- |
@@ -25,7 +39,7 @@
 | --------- |
 | 1. Name = "Infinity" |
 | 2. Data Source = "Grafana Labs" |
-| <img src="/Images/28-Grafana-Plugin-Management-Infinity.jpg"> |
+| <img src="/Images/30-Grafana-Plugin-Management-Infinity.jpg"> |
 
 
 | Below follows the details:- |
