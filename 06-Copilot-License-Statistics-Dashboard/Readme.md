@@ -10,11 +10,6 @@
 | 5. Azure Managed Grafana |
 
 
-| CODEBASE:- |
-| --------- |
-| 1. Powershell |
-
-
 | APP REGISTRATION:- |
 | --------- |
 | 1. Create "Secrets" |
@@ -41,7 +36,7 @@
 | <img src="/Images/30-Grafana-Plugin-Management-Infinity.jpg"> |
 
 
-| Below follows the details:- |
+| CODEBASE:- |
 | --------- |
-|  |
+| 1. Powershell |
 
