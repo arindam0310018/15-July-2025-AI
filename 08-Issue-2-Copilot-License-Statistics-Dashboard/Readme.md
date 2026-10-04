@@ -9,6 +9,7 @@
 
 | Resolution:- |
 | --------- |
+| __CACHE FILE WAS CORRUPTED.__ |
 | 1. __Delete the CACHE File.__ |
 | <img src="/Images/38-Delete-Cache-Copilot-License-Stats-Dashboard.jpg"> |
 | 2. __Re-run the Script and Generate the CACHE File.__ |
