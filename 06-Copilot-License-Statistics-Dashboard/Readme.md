@@ -343,3 +343,12 @@ Push-OutputBinding -Name Response -Value (
 | <img src="/Images/31-Test-Run-1.jpg"> |
 | <img src="/Images/32-Test-Run-Success.jpg"> |
 
+
+| GRAFANA PANEL CONFIG:- |
+| --------- |
+| <img src="/Images/33-Grafana-Panel-Config.jpg"> |
+
+
+| GRAFANA DASHBOARD - COPILOT LICENSE USAGE:- |
+| --------- |
+| <img src="/Images/34-Copilot-License-Statistics-Dashboard.jpg"> |
