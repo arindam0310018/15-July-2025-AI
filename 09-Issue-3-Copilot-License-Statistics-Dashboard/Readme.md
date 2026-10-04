@@ -1,4 +1,4 @@
-# Issue #2: Copilot License Statistics Dashboard:-
+# Issue #3: Copilot License Statistics Dashboard:-
 
 | Problem Statement:- |
 | --------- |
