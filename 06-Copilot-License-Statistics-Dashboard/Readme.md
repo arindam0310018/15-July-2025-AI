@@ -351,4 +351,4 @@ Push-OutputBinding -Name Response -Value (
 
 | GRAFANA DASHBOARD - COPILOT LICENSE USAGE:- |
 | --------- |
-| <img src="/Images/34-Copilot-License-Statistics-Dashboard.jpg"> |
+| <img src="/Images/34-Copilot-License-Statistics-Dashboard.png"> |
