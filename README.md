@@ -15,4 +15,4 @@ This Repository contains __All About AI__. List follows below:-
 
 | SCAN ME:- |
 | --------- |
-|  |
+| <img src="/Images/0-barcode.jpg"> |
