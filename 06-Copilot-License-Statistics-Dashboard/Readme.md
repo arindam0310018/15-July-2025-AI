@@ -15,7 +15,7 @@
 | 1. Powershell |
 
 
-| APP REGISTRAION:- |
+| APP REGISTRATION:- |
 | --------- |
 | 1. Create "Secrets" |
 | 2. Add Application API Permissions - "Application" |
