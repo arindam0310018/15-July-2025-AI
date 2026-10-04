@@ -3,11 +3,14 @@
 | Problem Statement:- |
 | --------- |
 | __Data CANNOT BE LOADED in all panels of the Grafana Dashboard.__ |
+| <img src="/Images/35-Error-Copilot-License-Usage-Dashboard.jpg"> |
+| <img src="/Images/36-Error-Copilot-License-Usage-Dashboard.jpg"> |
 
 
 | Resolution:- |
 | --------- |
-| 1. __Save the Output as CACHE.__ |
+| In the Powershell Script:- |
+| 1. __Save the JSON Output as CACHE.__ |
 | 2. __Validate the CACHE first.__ |
 
 
@@ -61,9 +64,9 @@ try {
 
 ```
 
-| Below is how it looks:- |
+| Below is where you navigate the CACHE File:- |
 | --------- |
-| <img src="/Images/35-Cache-Output-Copilot-License-Stats-Dashboard.jpg"> |
+| <img src="/Images/37-Cache-Output-Copilot-License-Stats-Dashboard.jpg"> |
 
 
 
