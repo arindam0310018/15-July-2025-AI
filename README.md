@@ -1,9 +1,9 @@
-# Azure AI:-
+# All About AI:-
 
 | What's Inside This Repository:- |
 | --------- |
 
-This Repository contains __Azure AI - Architecture & Design__. List follows below:-
+This Repository contains __All About AI__. List follows below:-
 
 | # | Topic Name  | Link Details |
 | :---------: | :---------: | :---------: |
