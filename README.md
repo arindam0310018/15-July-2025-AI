@@ -13,5 +13,6 @@ This Repository contains __All About AI__. List follows below:-
 | 4. | __Agent Comparison__ | https://github.com/arindam0310018/15-July-2025-AI/tree/main/04-Agent-Comparison |
 | 5. | __GitHub Models Retired__ | https://github.com/arindam0310018/15-July-2025-AI/tree/main/05-GitHub-Models-Retired |
 
-
-
+| SCAN ME:- |
+| --------- |
+|  |
