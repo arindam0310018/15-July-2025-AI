@@ -19,7 +19,6 @@
 | --------- |
 | 1. Create "Secrets" |
 | 2. Add Application API Permissions - "Application" |
-| --------- |
 | <img src="/Images/28-App-Reg-Api-Permission-Application.jpg"> |
 
 
