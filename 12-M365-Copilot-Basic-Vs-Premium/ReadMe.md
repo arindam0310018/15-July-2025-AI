@@ -2,4 +2,4 @@
 
 | M365 COPILOT BASIC Vs M365 COPILOT PREMIUM |
 | --------- |
-| <img src="/Images/44-M365-Copilot-Basic-vs-Premium.png" width="500" height="450"> |
+| <img src="/Images/44-M365-Copilot-Basic-vs-Premium.png" width="1200" height="900"> |
