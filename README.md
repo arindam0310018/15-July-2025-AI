@@ -18,7 +18,7 @@ This Repository contains __All About AI__. List follows below:-
 | 9. | __Issue #3: Copilot License Statistics Dashboard__ | https://github.com/arindam0310018/15-July-2025-AI/tree/main/09-Issue-3-Copilot-License-Statistics-Dashboard |
 | 10. | __Copilot for Sharepoint__ | https://github.com/arindam0310018/15-July-2025-AI/tree/main/10-Copilot-For-Sharepoint |
 | 11. | __Issue #1: Copilot for Sharepoint__ | https://github.com/arindam0310018/15-July-2025-AI/tree/main/11-Issue-1-Copilot-for-Sharepoint-Agent |
-| 12. | __M365-Copilot-Basic-Vs-Premium__ |  |
+| 12. | __M365-Copilot-Basic-Vs-Premium__ | https://github.com/arindam0310018/15-July-2025-AI/tree/main/12-M365-Copilot-Basic-Vs-Premium |
 
 
 | SCAN ME:- |
