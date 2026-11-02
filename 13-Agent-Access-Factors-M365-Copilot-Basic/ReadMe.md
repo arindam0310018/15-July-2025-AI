@@ -1,4 +1,4 @@
-# FACTORS: M365 COPILOT BASIC USER ACCESS TO AGENTS CREATED BY COPILOT PREMIUM USERS:-
+# FACTORS: M365 Copilot Basic User Access to Agents Created by Copilot Premium Users:-
 
 | IMPORTANT TO NOTE:- |
 | :--------- |
@@ -7,16 +7,16 @@
 
 | IMPORTANT QUESTIONS TO UNDERSTAND THE CONCEPT:- |
 | :--------- |
-| 1. __Can the user access the agent ?__ |
-| 2. __Is the User licensed to run AI against Org Data ?__ |
-| 3. __Is the User allowed to read the actual SharePoint Information ?__ |
+| 1. Can the user access the agent ? |
+| 2. Is the User licensed to run AI against Org Data ? |
+| 3. Is the User allowed to read the actual SharePoint Information ? |
 
 
 | USE CASES TO UNDERSTAND WHEN M365 COPILOT BASIC USER CAN or CANNOT ACCESS AGENTS CREATED BY COPILOT PREMIUM USERS:- |
 | :--------- |
-| 1. __User has SharePoint Access and PAYG/Copilot Credits Configured.__ |
-| 2. __User has SharePoint Access but No PAYG/Copilot Credits Configured.__ |
-| 3. __User has No SharePoint Access but has PAYG/Copilot Credits Configured.__ |
+| 1. User has SharePoint Access and PAYG/Copilot Credits Configured. |
+| 2. User has SharePoint Access but No PAYG/Copilot Credits Configured. |
+| 3. User has No SharePoint Access but has PAYG/Copilot Credits Configured. |
 
 
 | ALL DETAILS DESCRIBED IN THE MINDMAP:- |
