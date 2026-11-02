@@ -2,7 +2,7 @@
 
 | IMPORTANT TO NOTE:- |
 | :--------- |
-| For the sake of this blog post, I have considered that __"SharePoint"__ as document Repository. |
+| For the sake of this blog post, I have considered __"SharePoint"__ as document Repository. |
 
 
 | IMPORTANT QUESTIONS TO UNDERSTAND THE CONCEPT:- |
