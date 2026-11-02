@@ -53,7 +53,7 @@
 | 2. Microsoft is now directing Copilot Usage reporting to the dedicated __"/copilot/reports"__ path |
 | 3. Another Potential Breaking Details - Report version __"v2"__ use __"D28"__ and __NOT__ "D30". |
 | 4. Report version __"v1"__ uses - __"D7, D30, D90, D180, ALL"__ |
-| 5. Report version __"v2"__ uses - __"D7, D30, D90, D180, ALL"__ |
+| 5. Report version __"v2"__ uses - __"D7, D28, D90, D180, ALL"__ |
 
 
 | Reference URL:- |
