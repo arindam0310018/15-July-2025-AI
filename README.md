@@ -19,7 +19,7 @@ This Repository contains __All About AI__. List follows below:-
 | 10. | __Copilot for Sharepoint__ | https://github.com/arindam0310018/15-July-2025-AI/tree/main/10-Copilot-For-Sharepoint |
 | 11. | __Issue #1: Copilot for Sharepoint__ | https://github.com/arindam0310018/15-July-2025-AI/tree/main/11-Issue-1-Copilot-for-Sharepoint-Agent |
 | 12. | __M365-Copilot-Basic-Vs-Premium__ | https://github.com/arindam0310018/15-July-2025-AI/tree/main/12-M365-Copilot-Basic-Vs-Premium |
-
+| 13. | __M365-Agent-Access-Factors-Copilot-Basic__ | https://github.com/arindam0310018/15-July-2025-AI/blob/main/13-M365-Agent-Access-Factors-Copilot-Basic/ReadMe.md |
 
 | SCAN ME:- |
 | --------- |
