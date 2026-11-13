@@ -1,5 +1,5 @@
 ################################################################################################################################################################################################
-# Management KPI API | Define Cache File | License Information | Top 15 | Bottom 15 | Active Inactive License Reclaim | Top 3 Chat, Outlook, Teams, PPT, Excel and Word Copilot Users:-
+# Management KPI API | Define Cache File | License Information | Top 5 | Bottom 5 | Active Inactive License Reclaim | Top 3 Chat, Outlook, Teams, PPT, Excel and Word Copilot Users:-
 ################################################################################################################################################################################################
 
 using namespace System.Net
@@ -10,7 +10,7 @@ param($Request, $TriggerMetadata)
 # Cache file:-
 #--------------------
 
-$cacheFile = "D:\home\data\copilot-cache.json"
+$cacheFile = "D:\home\data\copilot-cache-v1.json"
 
 try {
 
@@ -66,13 +66,84 @@ try {
         -Headers $headers `
         -Uri "https://graph.microsoft.com/v1.0/subscribedSkus"
 
+    # $copilotLicense = $licenses.value | Where-Object {
+    #     $_.skuPartNumber -eq "Microsoft_365_Copilot"
+    # }
+
     $copilotLicense = $licenses.value | Where-Object {
-        $_.skuPartNumber -eq "Microsoft_365_Copilot"
+    $_.skuPartNumber -eq "Microsoft_365_Copilot"
+        } | Select-Object -First 1
+
+    if ($null -eq $copilotLicense)
+    {
+        throw "Microsoft_365_Copilot license SKU was not found."
     }
+
+    # NEW: Save the current Copilot SKU ID
+    $copilotSkuId = [string]$copilotLicense.skuId
+
 
     $purchasedLicenses = $copilotLicense.prepaidUnits.enabled
     $assignedLicenses  = $copilotLicense.consumedUnits
     $availableLicenses = $purchasedLicenses - $assignedLicenses
+
+    #--------------------------------------------------
+    # NEW: Get Current Entra Users
+    #--------------------------------------------------
+
+    $currentUsers = @()
+
+    $usersUri = "https://graph.microsoft.com/v1.0/users?`$select=id,displayName,userPrincipalName,accountEnabled,userType,assignedLicenses&`$top=999"
+
+    do
+    {
+        $usersResponse = Invoke-RestMethod `
+            -Method Get `
+            -Headers $headers `
+            -Uri $usersUri
+
+        if ($usersResponse.value)
+        {
+            $currentUsers += $usersResponse.value
+        }
+
+        $usersUri = $usersResponse.'@odata.nextLink'
+    }
+    while ($usersUri)
+
+    # Keep only:
+    # 1. Enabled users
+    # 2. Member users, not guests
+    # 3. Users currently assigned Microsoft 365 Copilot Premium
+
+    $currentPremiumUsers = $currentUsers | Where-Object {
+
+        $user = $_
+
+        $hasCopilotPremium = @(
+            $user.assignedLicenses | Where-Object {
+                ([string]$_.skuId).ToLowerInvariant() -eq $copilotSkuId.ToLowerInvariant()
+            }
+        ).Count -gt 0
+
+        $user.accountEnabled -eq $true -and
+        $user.userType -eq "Member" -and
+        $hasCopilotPremium
+    }
+
+    Write-Host "Current enabled Premium users: $($currentPremiumUsers.Count)"
+
+    # Create a fast lookup table using UPN
+    $currentPremiumUserLookup = @{}
+
+    foreach ($user in $currentPremiumUsers)
+    {
+        if (-not [string]::IsNullOrWhiteSpace($user.userPrincipalName))
+        {
+            $normalizedUpn = $user.userPrincipalName.Trim().ToLowerInvariant()
+            $currentPremiumUserLookup[$normalizedUpn] = $true
+        }
+    }
 
     #--------------------------------------------------
     # Copilot Usage:-
@@ -81,33 +152,63 @@ try {
     $copilotData = Invoke-RestMethod `
         -Method GET `
         -Headers $headers `
-        -Uri "https://graph.microsoft.com/v1.0/copilot/reports/getMicrosoft365CopilotUsageUserDetail(period='D28',version='v2')"
+        -Uri "https://graph.microsoft.com/v1.0/copilot/reports/getMicrosoft365CopilotUsageUserDetail(period='D7',version='v2')"
 
     #-------------------------------------------------- 
     # Convert CSV:-
     #--------------------------------------------------
 
-    $csvData = $copilotData | ConvertFrom-Csv
+    # $csvData = $copilotData | ConvertFrom-Csv
+
+    # $activeUsers = $csvData.Count
+
+    $allCopilotUsageData = @(
+    $copilotData | ConvertFrom-Csv
+    )
+
+    Write-Host "Users returned by D7 usage report before filtering: $($allCopilotUsageData.Count)"
+
+    #--------------------------------------------------
+    # NEW: Keep Only Current Premium-Licensed Users
+    #--------------------------------------------------
+
+    $csvData = @(
+        $allCopilotUsageData | Where-Object {
+
+            $usageUpn = $_."User Principal Name"
+
+            if ([string]::IsNullOrWhiteSpace($usageUpn))
+            {
+                return $false
+            }
+
+            $normalizedUsageUpn = $usageUpn.Trim().ToLowerInvariant()
+
+            return $currentPremiumUserLookup.ContainsKey($normalizedUsageUpn)
+        }
+    )
 
     $activeUsers = $csvData.Count
 
+    Write-Host "D7 users after current Premium-license filtering: $activeUsers"
+
     #-------------------------------------------------- 
-    # Top 15 Most Recent Users:-
+    # Top 5 Most Recent Users:-
     #--------------------------------------------------
 
     $topUsers = $csvData |
     Sort-Object { [datetime]$_."Last Activity Date" } -Descending |
-    Select-Object -First 15 `
+    Select-Object -First 5 `
         @{Name="User";Expression={$_. "Display Name"}},
         @{Name="LastActivity";Expression={$_. "Last Activity Date"}}
 
     #-------------------------------------------------- 
-    # Bottom 15 Least Recent Users:-
+    # Bottom 5 Least Recent Users:-
     #--------------------------------------------------
 
     $bottomUsers = $csvData |
     Sort-Object { [datetime]$_."Last Activity Date" } |
-    Select-Object -First 15 `
+    Select-Object -First 5 `
         @{Name="User";Expression={$_. "Display Name"}},
         @{Name="LastActivity";Expression={$_. "Last Activity Date"}}
 
@@ -118,7 +219,7 @@ try {
     $reclaimCandidates = $csvData | Where-Object {
 
     $_."Last Activity Date" -and
-    ([datetime]$_."Last Activity Date") -lt (Get-Date).AddDays(-30)
+    ([datetime]$_."Last Activity Date") -lt (Get-Date).AddDays(-7)
 
     } | Select-Object `
         @{Name="User";Expression={$_. "Display Name"}},
@@ -243,29 +344,39 @@ try {
     #--------------------------------------------------
 
     $result = @{
-        CacheStatus                 = "FRESH"
-        RefreshTime                 = Get-Date
-        PurchasedLicenses           = $purchasedLicenses
-        AssignedLicenses            = $assignedLicenses
-        AvailableLicenses           = $availableLicenses
-        AdoptionRate                = $adoptionRate
-        ActiveUsers30Day            = $activeUsers
-        TeamsUsers                  = $teamsUsers
-        WordUsers                   = $wordUsers
-        ExcelUsers                  = $excelUsers
-        PowerPointUsers             = $pptUsers
-        OutlookUsers                = $outlookUsers
-        ChatUsers                   = $chatUsers
-        TopUsers                    = $topUsers
-        BottomUsers                 = $bottomUsers
-        LicenseReclaimCandidates    = $reclaimCandidates
-        TopChatUsers                = $topChatUsers
-        TopOutlookUsers             = $topOutlookUsers
-        TopTeamsUsers               = $topTeamsUsers
-        TopPowerPointUsers          = $topPowerPointUsers
-        TopExcelUsers               = $topExcelUsers
-        TopWordUsers                = $topWordUsers
-        Success                     = $true
+        CacheStatus                     = "FRESH"
+        RefreshTime                     = Get-Date
+        ReportingPeriod                 = "D7"
+
+        PurchasedLicenses               = $purchasedLicenses
+        AssignedLicenses                = $assignedLicenses
+        AvailableLicenses               = $availableLicenses
+        
+        CurrentPremiumLicensedUsers     = $currentPremiumUsers.Count
+        UsageUsersBeforeLicenseFilter   = $allCopilotUsageData.Count
+        UsageUsersAfterLicenseFilter    = $activeUsers
+
+        AdoptionRate                    = $adoptionRate
+
+        ActiveUsers30Day                = $activeUsers
+        
+        TeamsUsers                      = $teamsUsers
+        WordUsers                       = $wordUsers
+        ExcelUsers                      = $excelUsers
+        PowerPointUsers                 = $pptUsers
+        OutlookUsers                    = $outlookUsers
+        ChatUsers                       = $chatUsers
+        TopUsers                        = $topUsers
+        BottomUsers                     = $bottomUsers
+        LicenseReclaimCandidates        = $reclaimCandidates
+        TopChatUsers                    = $topChatUsers
+        TopOutlookUsers                 = $topOutlookUsers
+        TopTeamsUsers                   = $topTeamsUsers
+        TopPowerPointUsers              = $topPowerPointUsers
+        TopExcelUsers                   = $topExcelUsers
+        TopWordUsers                    = $topWordUsers
+
+        Success                         = $true
     }
 
     #--------------------------------------------------
